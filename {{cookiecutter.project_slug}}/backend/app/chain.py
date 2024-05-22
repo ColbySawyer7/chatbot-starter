@@ -1,7 +1,6 @@
 import os
 # import LangChain dependencies
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
 from langchain.schema import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_community.llms import Ollama
@@ -12,7 +11,8 @@ Hello I am a chatbot
 
 # Setup the model for generating responses
 _model = Ollama(
-    model="llama3"
+    model="llama3",
+    base_url="http://ollama:11434"
 )
 
 _prompt = ChatPromptTemplate.from_messages([
