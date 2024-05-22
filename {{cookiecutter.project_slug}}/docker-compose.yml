@@ -2,7 +2,7 @@ version: '3.7'
 services:
   frontend:
     build:
-      context: {{cookiecutter.frontend_dir}}
+      context: frontend
     networks:
       - internal
     ports:
@@ -12,9 +12,9 @@ services:
     environment:
       - NODE_ENV=production
 
-  {{cookiecutter.project_slug}}:
+  backend:
     build:
-      context: crag
+      context: backend
     ports:
       - "{{ cookiecutter.backend_port }}:{{ cookiecutter.backend_port }}"
     env_file: .env
