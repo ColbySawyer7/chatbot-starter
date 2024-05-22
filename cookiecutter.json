@@ -1,0 +1,7 @@
+{
+    "project_name": "Chatbot Starter",
+    "project_slug": "app",
+    "frontend_dir": "app",
+    "backend_port": 8000,
+    "frontend-port": 3000
+}

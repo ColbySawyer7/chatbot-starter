@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  frontend:
+    build:
+      context: {{cookiecutter.frontend_dir}}
+    networks:
+      - internal
+    ports:
+      - "{{ cookiecutter.frontend_port }}:80"
+    volumes:
+      - ./frontend:/app:delegated
+    environment:
+      - NODE_ENV=production
+
+  {{cookiecutter.project_slug}}:
+    build:
+      context: crag
+    ports:
+      - "{{ cookiecutter.backend_port }}:{{ cookiecutter.backend_port }}"
+    env_file: .env
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    expose:
+     - 11434/tcp
+    ports:
+     - 11434:11434/tcp
+    healthcheck:
+      test: ollama --version || exit 1
+    command: serve
+    volumes:
+      - ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['all']
+              capabilities: [gpu]
+
+volumes:
+  ollama:
+
