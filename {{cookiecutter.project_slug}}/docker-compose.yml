@@ -6,8 +6,6 @@ services:
     ports:
       - "{{ cookiecutter.backend_port }}:{{ cookiecutter.backend_port }}"
     env_file: .env
-    depends_on:
-      - ollama
 
   ollama:
     image: ollama/ollama

@@ -2,7 +2,6 @@ from fastapi import FastAPI, APIRouter
 from fastapi.responses import RedirectResponse
 from langserve import add_routes
 from app.chain import chain as chat_chain
-from app import sms
 from fastapi.responses import JSONResponse
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
